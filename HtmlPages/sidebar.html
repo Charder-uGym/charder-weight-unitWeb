@@ -16,7 +16,7 @@
 -->
           <a style="margin-left:20px; margin-top:0px; padding-top:0px; color:white; font-size:20px; font-weight:bold;">量測記錄</a>
           
-          <button style="font-size:14px; background-color: antiquewhite; border-width:0px;border-radius:5px; margin-bottom:8px; margin-left:0px; vertical-align:middle">清除已登錄量測紀錄</button>                  
+          <button onClick="清除已登錄量測記錄()" style="font-size:14px; background-color: antiquewhite; border-width:0px;border-radius:5px; margin-bottom:8px; margin-left:0px; vertical-align:middle">清除已登錄量測紀錄</button>                  
                  
           <a style="color:white; float:right; margin-right:10px; margin-top:2px"> 自動更新</a>
           <input type="checkbox" id="autoUpdate" checked style="float:right; margin-right:5px; margin-top:5px" onClick="切換自動更新()">                    
@@ -58,7 +58,7 @@
       var nowStr =now.toLocaleString().substr(5,20);      
       //console.log(pickAname, rndWeight);
       var prependHtml = 
-        '<li id=' + '"rec' + recNoStr + '"><button class="確定登錄按鈕' + 
+        '<li style="margin-top:10px" id=' + '"rec' + recNoStr + '"><button class="確定登錄按鈕' + 
         '" id="rb' + recNoStr + '" onClick="確定登錄按鈕('+ recNoStr +')" >確定登錄</button>'+
         pickAname + ':'+ rndWeight + 'kg ' +
         nowStr+'</li>';   
@@ -80,7 +80,7 @@
       console.log("切換自動更新");
       if ($("#autoUpdate").prop("checked")) {
         $("#手動更新按鈕").hide();
-        autoUpdateInterval = setInterval(新增測試資料(), 5000);
+        autoUpdateInterval = setInterval('新增測試資料()', 5000);
       } else {
         $("#手動更新按鈕").show();
         clearInterval(autoUpdateInterval);
@@ -90,6 +90,8 @@
     function 確定登錄按鈕(id){
       var buttonStr = "#rb"+id.toString();
       var listStr   = "#rec"+id.toString();
+      
+      // call api to mark as registered
       $(buttonStr).remove();
       $(listStr).css('color', 'black');
       $(listStr).prepend('已登錄 - ');
