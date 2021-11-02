@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <script> 
+      // login
+      var loginUnit="";
+      var loginPwd="";
       // Configuratiion
       var experimental=false;
       var local_api = false;
@@ -87,14 +90,15 @@
               <div class="col ">
                 <h3 class="page-title m-0">
                   <span class="page-title-icon bg-gradient-primary text-white ">
-                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                    <i class="fa fa-user-o" aria-hidden="true"></i>
                   </span>
-                  <span id="ml-檢查課程預約狀況"> 檢查課程預約狀況 </span>
+                  <span id="ml-會員資料"> 會員資料 </span>
                 </h3>
               </div>
             </div>
 
 
+<!--
             <div style="margin: 10px">
               <span style="margin-left:0px" id ="ml-開始日期">  開始日期 </span> 
               <input id="rsvQueryStartDate" type='date' />
@@ -106,6 +110,7 @@
                 <span id="ml-檢查">檢 查</span>
               </button>
             </div>
+-->
 
             <!-- Page Header -->
 
@@ -123,9 +128,12 @@
                             <th id="ml-性別">性別</th>
                             <th id="ml-父母">父母</th>
                             <th id="ml-父母電話">父母電話</th>
-                            <th id="ml-量測記錄">量測記錄</th>
-                            <th id="ml-完成登錄" style="width:20px" >完成登錄</th>													
-                            <th id="ml-備註說明">備註說明</th>
+
+                             <th id="ml-備註說明">備註說明</th>                                                         
+                            <th id="ml-量測記錄"></th>
+                            <th id="ml-完成登錄" style="width:20px" ></th>									
+                            
+                            								
                           </tr>
                         </thead>
                       </table>
@@ -395,19 +403,26 @@
             { "extend": 'excel', "text":'<span id="ml-匯出EXCEL">匯出 EXCEL</span>',"className": 'btn-gradient-primary font-weight-bold' }
 
           ],            
-          order: [[ 3, "asc" ]],
-          data: rsvResult,        
+          order: [[ 0, "asc" ]],
+          data: rsvResult,    
+          pageLength: 7,
           columnDefs: [
-            { targets: -3, 
+            { targets: -1, 
               render: function (data, type, row, meta) {  
-                console.log("aaa", meta);
-                return  `<button class="確定登錄按鈕" onClick="test_measure(`+meta.row+`)">`+'查看紀錄'+`</button>`;
+                //console.log("aaa", meta);
+                return  `<button class="確定登錄按鈕" onClick="alert('查看功能尚未實作')">`+'查看紀錄'+`</button>`;
+                //return  `<button class="確定登錄按鈕" onClick="test_measure(`+meta.row+`)">`+'查看紀錄'+`</button>`;
               },
             },            
             { targets: -2, 
-              render: function (data) {  
-                if (data==true) return  '<i class="fa fa-check-square-o" aria-hidden="true"></i><span style="display:none" >Y</span>';
-                else            return  '<i class="fa fa-times" aria-hidden="true"></i><span style="display:none">N</span>';
+              render: function (data, type, row, meta) { 
+                //console.log("bbb", meta);
+                return  `<button class="確定登錄按鈕" onClick="alert('修改功能尚未實作')">`+'修改資料'+`</button>`;
+                //return  `<button class="確定登錄按鈕" onClick="test_measure(`+meta.row+`)">`+'修改資料'+`</button>`;     
+                
+                // checkbox 留著參考
+                //if (data==true) return  '<i class="fa fa-check-square-o" aria-hidden="true"></i><span //style="display:none" >Y</span>';
+                //else            return  '<i class="fa fa-times" aria-hidden="true"></i><span //style="display:none">N</span>';
 
               },
             },                 
@@ -501,9 +516,20 @@
         function checkReservations(){
           
           //測試
-          rsvResult[0]=['aaa','bbb','ccc','ddd','eee','量測記錄',true,'hhh'];
-          rsvResult[1]=['aaa','bbb','ccc','ddd','eee','量測記錄',true,'hhh'];
-          
+          var names=['龔X萱','吳X伯','王X佑','洪X銘','許X伶','張X青','張X富','劉X禮','林X豪','連X翰',
+                     '李X揚','梁X嘉','趙X如','莊X貴','王X哲','陳X剛','陳X孜','王X芸','謝X鴻','蔡X一',
+                     '張X霖','羅X冰','蘇X鈞','胡X倩','盧X聖','林X聖','林X菁','柳X倫','林X佳','陳X婷',
+                     '劉X穎','張X皓','林X佩','毛X婷','劉X軒','吳X雲','楊X帆','曾X云','杜X然','黃X平',
+                     '劉X剛','朱X苓','林X人','陳X瑋','陳X弘','黃X映','張X南','李X秀','郭X良','詹X貞',
+                     '鄭X斌','蕭X惠','賴X伯','鄭X德','林X音','林X偉','陳X珠','蘇X軒','邱X云','林X宏',
+                     '陳X婷','王X傑','陳X羽','吳X軒','黃X銘','劉X火','連X桂','吳X來','曾X惠','丁X梅',
+                     '張X源','何X倩','何X倫','余X倫','宋X純','曾X娟','陸X容','黃X蓮','王X育','賴X啟',
+                     '陳X意','朱X琳','林X夫','袁X穎','阮X傑','李X宇','林X君','林X易','黃X榮','王X香',
+                     '邱X文','曹X豪','許X昀','王X瑞','林X軒','林X伶','林X淳','楊X貞','陳X祥','王X玲'];          
+          for (var i=0;i<20; i+=2) {
+            rsvResult[i]=['ID'+i.toString().padStart(8, '0'),names[i],'男',names[i].substr(0,2)+"X",'','',true,];
+            rsvResult[i+1]=['ID'+(i+1).toString().padStart(8,'0'),names[i+1],'女',names[i+1].substr(0,2)+"X",'','',true,''];
+          }
           reservationsTable.clear();
           reservationsTable.rows.add(rsvResult).draw();
           
