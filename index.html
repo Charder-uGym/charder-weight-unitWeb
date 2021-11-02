@@ -98,7 +98,7 @@
             </div>
 
             <div id="chartDiv" style="height:500px; display:none">
-              <button onClick="$('#chartDiv').hide()" style="float:left; border:none; font-size:25px;margin:14px 0 0 0; background-color:transparent"><i class="fa fa-times" ></i></button>
+              <button onClick="show會員資料表()" style="float:left; border:none; font-size:25px;margin:14px 0 0 0; background-color:transparent"><i class="fa fa-times" ></i></button>
               <a style="float:left;  margin: 24px 5px 10px 5px">關閉圖表</a>
 
               <button class="" style="font-size: 14px; color: white; float:left;margin-left:15px; margin-top:10px; background-color:#FF4350; border:none; padding:10px;border-radius:8px " onclick="alert('Demo 版不支援')">週</button> 
@@ -138,7 +138,7 @@
             <!-- Page Header -->
 
             <!-- Content Starts -->
-            <div class="row">
+            <div id="會員資料表" class="row">
               <div class="col-md-12">
                 <div class="card mb-0">
                   <div class="card-body">
@@ -435,13 +435,13 @@
             { targets: -1, 
               render: function (data, type, row, meta) {  
                 //console.log("aaa", meta);
-                return  `<button id="recCheck`+meta.row.toString()+`" class="確定登錄按鈕" onClick="show_measurements(`+meta.row+`)">`+'查看紀錄'+`</button>`;
+                return  `<button id="checkDetails`+meta.row.toString()+`" class="確定登錄按鈕" onClick="show_measurements(`+meta.row+`)">`+'查看紀錄'+`</button>`;
               },
             },            
             { targets: -2, 
               render: function (data, type, row, meta) { 
                 //console.log("bbb", meta);
-                return  `<button class="確定登錄按鈕" onClick="alert('修改功能尚未實作')">`+'修改資料'+`</button>`;
+                return  `<button class="確定登錄按鈕" onClick="alert('Demo 版不支援')">`+'修改資料'+`</button>`;
                 //return  `<button class="確定登錄按鈕" onClick="show_measurements(`+meta.row+`)">`+'修改資料'+`</button>`;     
                 
                 // checkbox 留著參考
@@ -456,6 +456,7 @@
         function show_measurements(data){
           //console.log(rsvResult[data]);
           if (data==0) {
+            $("#會員資料表").hide();
             $("#chartDiv").show();
             drawChart();
           } else {
@@ -488,6 +489,10 @@
           }
         }
 
+        function show會員資料表(){
+          $('#chartDiv').hide();
+          $("#會員資料表").show();
+        }
         
         var expirationsTable  =$('#expirations').DataTable( {
           dom: 'Bfrtip',
@@ -906,8 +911,8 @@
       </script>
       
       <script>
-        $("#recCheck0").css("background-color", "rgb(255,67,80)");
-        $("#recCheck0").css("color", "rgb(255,255,255)");
+        $("#checkDetails0").css("background-color", "rgb(255,67,80)");
+        $("#checkDetails0").css("color", "rgb(255,255,255)");
       </script>
        
       <style>
