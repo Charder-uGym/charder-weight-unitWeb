@@ -6,6 +6,9 @@
       <button class="btn" type="button"><i class="fa fa-search"></i></button>
   </form>
 -->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans TC">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans Mono">
  
   <div id="sidebar-menu" class="sidebar-menu">
        
@@ -52,7 +55,7 @@
                '邱X文','曹X豪','許X昀','王X瑞','林X軒','林X伶','林X淳','楊X貞','陳X祥','王X玲'];
     
     function 新增測試資料(){
-      var pickAname = names[Math.floor(Math.random()*20)];
+      var pickAname = names[Math.floor(Math.random()*100)];
       var rndWeight = (Math.random()*2 +2.5).toString().substr(0,4);
       var recNoStr= recNo.toString();
       var now = new Date(Date.now());
@@ -61,8 +64,8 @@
       var prependHtml = 
         '<li style="margin-top:10px" id=' + '"rec' + recNoStr + '"><button class="確定登錄按鈕' + 
         '" id="rb' + recNoStr + '" onClick="確定登錄按鈕('+ recNoStr +')" >確定登錄</button>'+
-        pickAname + ':'+ rndWeight + 'kg ' +
-        nowStr+'</li>';   
+        '<span style="font-family:Noto Sans TC; font-size:18px">' + pickAname + '</span>' + '<span style="font-family:Noto Sans Mono; font-size:17px">' + 
+        ':'+ rndWeight + 'kg ' + nowStr+ '</span>' + '</li>';   
       
       recNo++;
       
@@ -92,10 +95,14 @@
       var buttonStr = "#rb"+id.toString();
       var listStr   = "#rec"+id.toString();
       
-      // call api to mark as registered
-      $(buttonStr).remove();
+      // 若已登錄，直接 return
+      if ($(listStr).css('color') == 'rgb(0, 0, 0)') return;
+      
+      $(buttonStr).css("background-color", "transparent");
+      $(buttonStr).text("已登錄");
+      //$(buttonStr).remove();
       $(listStr).css('color', 'black');
-      $(listStr).prepend('已登錄 - ');
+      //$(listStr).prepend('已登錄 - ');
     }
 
     function 清除已登錄量測記錄(){
