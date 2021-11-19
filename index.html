@@ -104,7 +104,7 @@
               </div>
             </div>
 
-            <div id="chartDiv" style="height:500px; display:none">
+            <div id="chartDiv" style="height:400px; display:none">
               <button onClick="show會員資料表()" style="float:left; border:none; font-size:25px;margin:14px 0 0 0; background-color:transparent"><i class="fa fa-times" ></i></button>
               <a style="float:left;  margin: 24px 5px 10px 5px">關閉圖表</a>
 
@@ -116,15 +116,20 @@
               ; border:none; padding:10px;border-radius:8px " onclick="alert('Demo 版不支援')">全部</a>   
               
               <a style="float:right; margin:20px 0px 0 0">期間: 2021年 10/30 到 11/6</a>
-              <a style="float:right; margin:20px 30px 0 0">姓名: 龔X萱</a>                         
-                          
-                                                  
-              <div>
-                <canvas id="myChart" style=";height:400px"></canvas>
-              </div>
+              <a style="float:right; margin:20px 30px 0 0">姓名: 龔X萱</a> 
+                  
+              <canvas id="" width="1000px" height="10px" style="margin:1px"></canvas> <br>   
               
-              <button onclick="alert('Demo 版不支援')" style="color:#FF4350; background-color:transparent; float:left; font-size:25px;margin:0 0 0 30%; border:none"><i class="fa fa-arrow-left"></i></button>
-              <button onclick="alert('Demo 版不支援')" style="color:#FF4350; background-color:transparent; float:right; font-size:25px;margin:0 30% 0; border:none"><i class="fa fa-arrow-right"></i></button>            
+              <div>          
+                <button onclick="alert('Demo 版不支援')" style="color:#FF4350; background-color:transparent; float:left; font-size:25px;margin:0 0 0 30%; border:none"><i class="fa fa-arrow-left"></i></button>
+                <button onclick="alert('Demo 版不支援')" style="color:#FF4350; background-color:transparent; float:right; font-size:25px;margin:0 30% 0; border:none"><i class="fa fa-arrow-right"></i></button>                                                                          
+              </div>
+                        
+              <canvas id="myChartWeight" width="1000px" height="160px" style="margin:10px"></canvas>   
+              <canvas id="myChartHeight" width="1000px" height="160px" style="margin:10px"></canvas>   
+              <canvas id="myChartBMI"    width="1000px" height="160px" style="margin:10px"></canvas>   
+                                      
+                                                       
                                        
             </div>
 
@@ -472,12 +477,15 @@
         }
         
         
-        var ctx;
-        var myChart;
+        var ctxW;
+        var ctxH;
+        var ctxB;
+        var myChartWeight;
+        var myChartHeight;
+        var myChartBMI;
         function drawChart(){
-          ctx = $('#myChart');
-          if (myChart==null){
-            myChart = new Chart(ctx, {
+            ctxW = $('#myChartWeight');
+            myChartWeight = new Chart(ctxW, {
               type: 'bar',
               data: {
                 labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
@@ -489,12 +497,40 @@
                   data: [null, null, null, null, 4.28, 4.75, null]
                 }]
               }
-            }); 
-          }else {
-            
-            myChart.update();
-          }
+            });      
+
+            ctxH = $('#myChartHeight');
+            myChartHeight = new Chart(ctxH, {
+              type: 'bar',
+              data: {
+                labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                datasets: [{
+                  backgroundColor: [
+                    'rgba(99, 128, 64, 0.9)'
+                  ],
+                  label: '身高(公分)',
+                  data: [null, null, null, null, 53.5, 54.1, null]
+                }]
+              }
+            });    
+
+            ctxB = $('#myChartBMI');
+            myChartBMI = new Chart(ctxB, {
+              type: 'bar',
+              data: {
+                labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                datasets: [{
+                  backgroundColor: [
+                    'rgba(99, 128, 196, 0.9)'
+                  ],
+                  label: 'BMI          ',
+                  data: [null, null, null, null, 14.81, 16.22, null]
+                }]
+              }
+            });
+
         }
+
 
         function show會員資料表(){
           $('#chartDiv').hide();

@@ -57,15 +57,25 @@
     function 新增測試資料(){
       var pickAname = names[Math.floor(Math.random()*100)];
       var rndWeight = (Math.random()*2 +2.5).toString().substr(0,4);
+      var rndHeight = (Math.random()*40 +40).toString().substr(0,4);
+      var rndBMI = rndWeight/((rndHeight/100)*(rndHeight/100));
+      var rndBMIStr = (Math.floor(rndBMI*100)/100).toString();
       var recNoStr= recNo.toString();
       var now = new Date(Date.now());
       var nowStr =now.toLocaleString().substr(5,20);      
       //console.log(pickAname, rndWeight);
       var prependHtml = 
+//        '<li style="margin-top:10px" id=' + '"rec' + recNoStr + '"><button class="確定登錄按鈕' + 
+//        '" id="rb' + recNoStr + '" onClick="確定登錄按鈕('+ recNoStr +')" >確定登錄</button>'+
+//        '<span style="font-family:Noto Sans TC; font-size:18px">' + pickAname + '</span>' + '<span style="font-family:Noto Sans Mono; font-size:17px">' + 
+//        ':'+ rndWeight + 'KG ' + nowStr+ '</span>' + '</li>';
+      
         '<li style="margin-top:10px" id=' + '"rec' + recNoStr + '"><button class="確定登錄按鈕' + 
-        '" id="rb' + recNoStr + '" onClick="確定登錄按鈕('+ recNoStr +')" >確定登錄</button>'+
-        '<span style="font-family:Noto Sans TC; font-size:18px">' + pickAname + '</span>' + '<span style="font-family:Noto Sans Mono; font-size:17px">' + 
-        ':'+ rndWeight + 'KG ' + nowStr+ '</span>' + '</li>';   
+        '" id="rb' + recNoStr + '" onClick="確定登錄按鈕('+ recNoStr +')" >確定登錄</button>' +
+        '<span style="font-family:Noto Sans Mono; font-size:18px"> '+ nowStr+ ' </span>' + 
+          
+        '<span style="font-family:Noto Sans TC; font-size:18px; margin-left:20px">' + pickAname + '</span>' + '<span style="font-family:Noto Sans Mono; font-size:16px; margin-left:30px">' + 
+        ' 體重:' + rndWeight + '公斤, 身高:' + rndHeight + '公分, BMI:' + rndBMIStr + ' </span></li>';      
       
       recNo++;
       
@@ -99,7 +109,7 @@
       if ($(listStr).css('color') == 'rgb(0, 0, 0)') return;
       
       $(buttonStr).css("background-color", "transparent");
-      $(buttonStr).text("已登錄");
+      $(buttonStr).text("已經登錄");
       //$(buttonStr).remove();
       $(listStr).css('color', 'black');
       //$(listStr).prepend('已登錄 - ');
