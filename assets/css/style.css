@@ -7507,7 +7507,7 @@ table .progress {
 /*	width: 5px; by paul kang*/
 	width: 15px;
 	height: 5px;
-	border-radius: 25px;
+	border-radius: 0px;
 	position: absolute;
 	z-index: -1;
 }
@@ -7515,15 +7515,24 @@ table .progress {
 ::-webkit-scrollbar-track {
 /*	background: #fff;*/
 	background: #FF4350;
+    border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb {
 /*	background: #ccc;*/
-	background: #fff;
+	background: rgba(255,255,255,0.5);/*#fff;*/
 	position: absolute;
 	z-index: -1;
+    border-radius: 10px;
 }
 
+.rec::-webkit-scrollbar-track {
+	background: #f7f7f7;
+}
+
+.rec::-webkit-scrollbar-thumb {
+	background: rgba(100,100,100,0.5);;
+}
 
 /* Handle */
 

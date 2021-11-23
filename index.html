@@ -12,7 +12,8 @@
       if (local_api) {
         var apiUrlBase = "http://localhost:5000/";
       } else {
-        var apiUrlBase = "https://api-for-sql.herokuapp.com/";
+        //var apiUrlBase = "https://api-for-sql.herokuapp.com/";
+        var apiUrlBase = "https://charder-weight-api.herokuapp.com/";
       }
 
       console.log(apiUrlBase);   
@@ -81,6 +82,21 @@
         </div>
         <!-- /Sidebar -->
 
+                       
+<!--
+        <div style="position:absolute;margin-left:480px;margin-top:200px; width:200px;height:600; border-style:solid;border-color:gray; border-width:1px">List data <br>
+        2021/11/23<br> 4.5kg, 45cm, BMI:10
+                </div>
+-->
+        
+<!--
+        <nav style="color:white;position:absolute;margin-top:200px; margin-left:460px;margin-top:200px; height:500px; overflow:hidden;overflow-y:scroll;;border-style:solid;border-color:#FFAC55">       
+          aaa         
+        </nav>        
+-->
+        
+
+       
         <!-- Page Wrapper -->
         <div class="page-wrapper" id="rsv-page" style="margin-left:450px">
 
@@ -92,43 +108,54 @@
                   <span class="page-title-icon bg-gradient-primary text-white ">
                     <i class="fa fa-user-o" aria-hidden="true"></i>
                   </span>
-                  <span id="ml-會員資料"> 會員資料 </span>
+                  <span id="ml-資料標題"> 會員資料 </span>
                   <span style="float:right;margin-top:5px">
                     <button onclick="alert('Demo 版不支援')" style="border:none;background-color: transparent">
-                      <i class="fa fa-plus" style="color:royalblue"></i>                      
+                      <i class="fa fa-plus" style="color:royalblue"> 新增會員</i>                      
                     </button>
-
-                    新增會員
                   </span>
                 </h3>
               </div>
             </div>
 
-            <div id="chartDiv" style="height:400px; display:none">
-              <button onClick="show會員資料表()" style="float:left; border:none; font-size:25px;margin:14px 0 0 0; background-color:transparent"><i class="fa fa-times" ></i></button>
-              <a style="float:left;  margin: 24px 5px 10px 5px">關閉圖表</a>
-
-              <button class="" style="font-size: 14px; color: white; float:left;margin-left:15px; margin-top:10px; background-color:#FF4350; border:none; padding:10px;border-radius:8px " onclick="alert('Demo 版不支援')">週</button> 
-
-              <button class="" style="font-size: 14px; color: white; float:left;margin-left:15px;  margin-top:10px; background-color:lightgray; border:none; padding:10px;border-radius:8px " onclick="alert('Demo 版不支援')">月</button>   
-
-              <a class="" style="font-size: 14px; color: white; float:left;margin-left:15px; margin-top:10px; background-color:lightgray
-              ; border:none; padding:10px;border-radius:8px " onclick="alert('Demo 版不支援')">全部</a>   
-              
-              <a style="float:right; margin:20px 0px 0 0">期間: 2021年 10/30 到 11/6</a>
-              <a style="float:right; margin:20px 30px 0 0">姓名: 龔X萱</a> 
-                  
-              <canvas id="" width="1000px" height="10px" style="margin:1px"></canvas> <br>   
-              
-              <div>          
-                <button onclick="alert('Demo 版不支援')" style="color:#FF4350; background-color:transparent; float:left; font-size:25px;margin:0 0 0 30%; border:none"><i class="fa fa-arrow-left"></i></button>
-                <button onclick="alert('Demo 版不支援')" style="color:#FF4350; background-color:transparent; float:right; font-size:25px;margin:0 30% 0; border:none"><i class="fa fa-arrow-right"></i></button>                                                                          
+<!--            <div id="chartDiv" style="height:400px; display:none">-->
+            <div id="chartDiv" style="display:none; margin-left:200px">
+              <div>
+                <button onClick="show會員資料表()" style="border:none; font-size:25px;margin-top:0px; margin-left:-200px; background-color:transparent"><i class="fa fa-times" ></i>
+                <span style="font-size:16px"> 關閉</span></button>
+                           
+                <div class="rec" style="margin-left:-200px;margin-top:0px; width:200px;height:608px; border-style:solid;border-color:black; border-width:1px; overflow:hidden; overflow-y:scroll;padding-top:5px">
+                  <button style="text-align:left; border:none; background-color:#F7F7F7">
+                    2021/11/23 <br> 
+                    4.5kg, 45cm, BMI:10   
+                  </button>
+                </div>           
               </div>
+              
+
                         
-              <canvas id="myChartWeight" width="1000px" height="160px" style="margin:10px"></canvas>   
-              <canvas id="myChartHeight" width="1000px" height="160px" style="margin:10px"></canvas>   
-              <canvas id="myChartBMI"    width="1000px" height="160px" style="margin:10px"></canvas>   
-                                      
+              <div style="margin-top:-600px">
+                <button onclick="alert('Demo 版不支援')" style="color:#FF4350; background-color:transparent; float:left; font-size:20px;margin-left:40px; margin-top:-5px; border:none"><i class="fa fa-arrow-left"></i></button>
+                <button onclick="alert('Demo 版不支援')" style="color:#FF4350; background-color:transparent; float:right; font-size:20px;margin-right:20px; margin-top:-5px; border:none"><i class="fa fa-arrow-right"></i></button>                
+                <div style="text-align: center">
+                  <div id="nowDate" >2021/11/23</div> <br>
+                  <div id="nowWeight" style="margin-top:-20px;font-size:30px; color:#ff6984">4.5kg</div>
+                </div>
+
+                <canvas id="myChartWeight" width="1000px" height="170px" style="margin:10px; margin-top:0px"></canvas>  
+
+                <div style="text-align:center">
+                  <div id="nowWeight" style="margin-top:10px;font-size:30px; color:#698040">53.2cm</div>
+                </div>
+                                    
+                <canvas id="myChartHeight" width="1000px" height="170px" style="margin:10px; margin-top:0px"></canvas>   
+                
+                <div style="text-align:center">
+                  <div id="nowWeight" style="margin-top:10px;font-size:30px; color:#6980b0">BMI: 20.6</div>
+                </div>
+                                
+                <canvas id="myChartBMI"    width="1000px" height="170px" style="margin:10px; margin-top:0px"></canvas>   
+              </div>                        
                                                        
                                        
             </div>
@@ -146,10 +173,8 @@
               </button>
             </div>
 -->
-
-            <!-- Page Header -->
-
-            <!-- Content Starts -->
+ 
+            <!-- Content Starts -->            
             <div id="會員資料表" class="row">
               <div class="col-md-12">
                 <div class="card mb-0">
@@ -177,6 +202,7 @@
                 </div>		
               </div>
             </div>
+
             <!-- /Content End -->
 
           </div>
@@ -471,6 +497,7 @@
           if (data==0) {
             $("#會員資料表").hide();
             $("#chartDiv").show();
+            $('#ml-資料標題').text('量測記錄');
             drawChart();
           } else {
             alert("Demo 版不支援")
@@ -487,7 +514,7 @@
         function drawChart(){
             ctxW = $('#myChartWeight');
             myChartWeight = new Chart(ctxW, {
-              type: 'bar',
+              type: 'line',
               data: {
                 labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
                 datasets: [{
@@ -495,14 +522,30 @@
                     'rgba(255, 99, 132, 0.9)'
                   ],
                   label: '體重(公斤)',
-                  data: [null, null, null, null, 4.28, 4.75, null]
+                  data: [3.95, 4.13, 4.21, 4.26, 4.28, 4.35, 4.52],
+                  tension: 0.3
                 }]
-              }
+              },
+              options: {
+                plugins: { 
+                  legend: {
+                    display: false,
+                    position: 'left'
+                  }
+                },                
+                scales: {
+                  x: {
+                    ticks: {
+                      display: false //this will remove only the label
+                    }
+                  }
+                }
+              }              
             });      
 
             ctxH = $('#myChartHeight');
             myChartHeight = new Chart(ctxH, {
-              type: 'bar',
+              type: 'line',
               data: {
                 labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
                 datasets: [{
@@ -510,14 +553,29 @@
                     'rgba(99, 128, 64, 0.9)'
                   ],
                   label: '身高(公分)',
-                  data: [null, null, null, null, 53.5, 54.1, null]
+                  data: [50.1, 52.3, 54.7, 55.9, 56.8, 58.1, 60.2]
                 }]
+              },
+              options: {
+                plugins: { 
+                  legend: {
+                    display: false,
+                    position: 'left'
+                  }
+                },                
+                scales: {
+                  x: {
+                    ticks: {
+                      display: false //this will remove only the label
+                    }
+                  }
+                }
               }
             });    
 
             ctxB = $('#myChartBMI');
             myChartBMI = new Chart(ctxB, {
-              type: 'bar',
+              type: 'line',
               data: {
                 labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
                 datasets: [{
@@ -525,8 +583,23 @@
                     'rgba(99, 128, 196, 0.9)'
                   ],
                   label: 'BMI          ',
-                  data: [null, null, null, null, 14.81, 16.22, null]
+                  data: [20.6, 19.8, 20.1, 19.51, 17.81, 16.22, 15.9]
                 }]
+              },
+              options: {
+                plugins: { 
+                  legend: {
+                    display: false,
+                    position: 'left'
+                  }
+                },                
+                scales: {
+                  x: {
+                    ticks: {
+                      display: false //this will remove only the label
+                    }
+                  }
+                }
               }
             });
 
@@ -535,7 +608,8 @@
 
         function show會員資料表(){
           $('#chartDiv').hide();
-          $("#會員資料表").show();
+          $('#會員資料表').show();
+          $('#ml-資料標題').text('會員資料');
         }
         
         var expirationsTable  =$('#expirations').DataTable( {
