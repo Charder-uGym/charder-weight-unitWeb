@@ -6,3 +6,21 @@
   vertical-align:top; 
   margin-right:5px;
 }
+
+.selectedBtn {
+  width:50px;
+  background-color:#ff4350; 
+  color:white;
+  padding:5px; 
+  border:none; 
+  border-radius:5px;  
+}
+
+.unselectedBtn {
+  width:50px;  
+  background-color:darkgray; 
+  color:white; 
+  padding:5px; 
+  border:none; 
+  border-radius:5px;  
+}
